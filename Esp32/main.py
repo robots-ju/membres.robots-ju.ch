@@ -1,7 +1,9 @@
 import network
 import usocket
-from machine import Pin, PWM
+from machine import Pin, PWM, UART
 import time
+import struct
+
 
 #---var---
 invalid = 0
@@ -37,10 +39,16 @@ valid_tone = 'eagc'
 invalid_tone = 'cgae'
 rhythm =  l*[4]
 
+#---RDM6300---
+uart1 = UART(1, baudrate=9600, tx=14, rx=4)
+buf = bytearray(4)
 
 
 while True:
     #---lecture ID (125kHz)---#
+    if uart1.any():
+	uart1.readinto(buf)
+	ID = bytes(buf)
     
     #---lecture ID (13MHz)---#
     
@@ -53,6 +61,7 @@ while True:
     if recu == b'invalid ID' :
         invalid = True
     else :
+        invalid = False
         nom = recu[:-2].decode()
         statut = recu[-1]
         equipe = recu[-2]
