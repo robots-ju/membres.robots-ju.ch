@@ -1,0 +1,25 @@
+------serveur--------
+python
+import socket
+cnx_p=socket.socket()
+cnx_p.bind(("",1234))
+cnx_p.listen(1)
+cnx,infos=cnx_p.accept()
+
+------ip--------
+ipconfig
+
+-------client----------
+import network
+
+wlan = network.WLAN(network.STA_IF)
+wlan.active(True)
+wlan.connect('6650 1200', 'jogalo-2824-2824')
+
+import usocket
+cnx=usocket.socket(usocket.AF_INET,usocket.SOCK_STREAM)
+cnx.connect(("192.168.1.134",1234))
+
+-------talk----------
+cnx.send(b'coucou')
+cnx.recv(30)
