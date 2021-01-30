@@ -2,17 +2,19 @@ import mfrc522
 from os import uname
 
 
-def do_write():
+def do_read():
 
 	if uname()[0] == 'WiPy':
 		rdr = mfrc522.MFRC522("GP14", "GP16", "GP15", "GP22", "GP17")
 	elif uname()[0] == 'esp8266':
 		rdr = mfrc522.MFRC522(0, 2, 4, 5, 14)
+	elif uname()[0] == 'esp32':
+		rdr = mfrc522.MFRC522(14, 13, 12, 5, 21)
 	else:
 		raise RuntimeError("Unsupported platform")
 
 	print("")
-	print("Place card before reader to write address 0x08")
+	print("Place card before reader to read from address 0x08")
 	print("")
 
 	try:
@@ -35,12 +37,8 @@ def do_write():
 						key = [0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]
 
 						if rdr.auth(rdr.AUTHENT1A, 8, key, raw_uid) == rdr.OK:
-							stat = rdr.write(8, b"\x00\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f")
+							print("Address 8 data: %s" % rdr.read(8))
 							rdr.stop_crypto1()
-							if stat == rdr.OK:
-								print("Data written to card")
-							else:
-								print("Failed to write data to card")
 						else:
 							print("Authentication error")
 					else:
