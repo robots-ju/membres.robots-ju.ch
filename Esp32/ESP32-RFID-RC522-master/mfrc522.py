@@ -218,13 +218,20 @@ class MFRC522:
         if stat == self.OK:
             (stat, raw_uid) = self.anticoll()
             if stat == self.OK:
+                print("New card detected")
                 if self.select_tag(raw_uid) == self.OK:
                     key = [0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
                     if self.auth(self.AUTHENT1A, 8, key, raw_uid) == self.OK:
                         card = self.read(8)
-                        #print('Address 8 data: {}'.format(self.read(8)))
+                        print(card)
+                        print('Address 8 data: {}'.format(self.read(8)))
                         self.stop_crypto1()
                         return int('{}{}{}{}'.format(raw_uid[0], raw_uid[1], raw_uid[2], raw_uid[3])), card
+                    else :
+                        print ('auth error')
+                else:
+                    print("Failed to select tag")
+                        
         return None
         
     def write_card(self, data):
