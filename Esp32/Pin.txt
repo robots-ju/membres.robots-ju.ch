@@ -1,0 +1,25 @@
+St7735:
+	VLED -> 3V3
+	SCK -> D27	
+	SDA -> D32   
+	A0  -> D33 
+	RST -> D17
+	CS  -> D18
+	GND -> GND
+	VCC -> 3V3
+	
+RDM6300:
+	TX -> D16 
+	+schéma shiter
+RC522:
+	SDA -> D21
+	SCK -> D14 
+	Mosi -> D13 
+	Miso -> D12
+	gnd -> gnd
+	rst -> D5 
+	3v3 -> V+
+	
+buzzer:
+	gnd -> gnd
+	V+  -> D26
