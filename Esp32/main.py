@@ -47,7 +47,7 @@ buf = bytearray(4)
 while True:
     #---lecture ID (125kHz)---#
     if uart1.any():
-	uart1.readinto(buf)
+        uart1.readinto(buf)
 	ID = bytes(buf)
     
     #---lecture ID (13MHz)---#
@@ -57,22 +57,20 @@ while True:
     cnx.send(ID.encode())
     
     #---reception ID---#
-    recu = cnx.recv(30)
-    if recu == b'invalid ID' :
-        invalid = True
-    else :
+    recu = cnx.recv(1024)
+    invalid=True
+    if recu != b'invalid ID' :
         invalid = False
         nom = recu[:-2].decode()
         statut = recu[-1]
         equipe = recu[-2]
     
     #---Buzzer---#
-    if invalid == True :
+    if invalid:
         for tone, length in zip(invalid_tone, rhythm):
             beeper.freq(tones[tone])
             time.sleep(tempo/length)
-            
-    if invalid == False :
+    else:
         for tone, length in zip(valid_tone, rhythm):
             beeper.freq(tones[tone])
             time.sleep(tempo/length)
