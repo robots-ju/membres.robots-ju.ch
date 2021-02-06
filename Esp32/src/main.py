@@ -66,10 +66,10 @@ while True:
     
     #---lecture ID (13MHz)---#
     (stat, tag_type) = rdr.request(rdr.REQIDL)
-			if stat == rdr.OK:
-				(stat, raw_uid) = rdr.anticoll()
-				if stat == rdr.OK:
-                    ID = raw_uid[0] + raw_uid[1] + raw_uid[2] + raw_uid[3]
+	if stat == rdr.OK:
+		(stat, raw_uid) = rdr.anticoll()
+		if stat == rdr.OK:
+            ID = raw_uid[0] + raw_uid[1] + raw_uid[2] + raw_uid[3]
 					#print("New card detected")
 					#print("  - tag type: 0x%02x" % tag_type)
 					#print("  - uid	 : 0x%02x%02x%02x%02x" % (raw_uid[0], raw_uid[1], raw_uid[2], raw_uid[3]))
@@ -84,11 +84,12 @@ while True:
 					#else:
 					#	print("Failed to select tag")
     #---send ID---#
-    ID = 'GET'+ID
-    cnx.send(ID.encode())
+    if ID != 0:
+        ID = 'GET'+ID
+        cnx.send(ID.encode())
     
     #---reception ID---#
-    recu = cnx.recv(1024)
+    recu = cnx.recv(1024)           #est-ce qu'il faut attendre un petit peu avant ou il ne continu pas le code avant d'avoir recu qqch ?
     invalid=True
     if recu != b'invalid ID' :
         invalid = False
@@ -116,5 +117,6 @@ while True:
     tft.text((20, 60), nom, TFT.RED, sysfont, 3, nowrap=True)
 
     #---fin de la bouvle---
+    ID=0
     time.sleep_ms(1000)
     tft.fill(TFT.BLACK)
