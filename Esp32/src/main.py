@@ -109,8 +109,11 @@ while True:
     
     #---Màj écran---#
     if statut == 1:
-        tft.text((20, 20), "Bienvenu !", TFT.GREEN, sysfont, 3, nowrap=True)
-        tft.text((20, 60), nom, TFT.RED, sysfont, 3, nowrap=True)
+        message = "Bienvenu !"
+    else :
+        message = "A bientôt !"
+    tft.text((20, 20), message, TFT.GREEN, sysfont, 3, nowrap=True)
+    tft.text((20, 60), nom, TFT.RED, sysfont, 3, nowrap=True)
 
     #---fin de la bouvle---
     time.sleep_ms(1000)
