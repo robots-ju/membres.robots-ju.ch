@@ -88,36 +88,36 @@ while True:
 					#	print("Failed to select tag")
     #---send ID---#
     if ID != 0:
-        ID = 'GET'+ID
+        ID = 'ADD'+ID
         cnx.send(ID.encode())
     
         #---reception ID---#
-        recu = cnx.recv(1024)           #est-ce qu'il faut attendre un petit peu avant ou il ne continu pas le code avant d'avoir recu qqch ?
-        invalid=True
-        if recu != b'invalid ID' :
-            invalid = False
-            nom = recu[:-2].decode()
-            statut = recu[-1]
-            equipe = recu[-2]
-        
-        #---Buzzer---#
-        if invalid:
-            for tone, length in zip(invalid_tone, rhythm):
-                beeper.freq(tones[tone])
-                time.sleep(tempo/length)
-        else:
-            for tone, length in zip(valid_tone, rhythm):
-                beeper.freq(tones[tone])
-                time.sleep(tempo/length)
-            
-        
-        #---Màj écran---#
-        if statut == 1:
-            message = "Bienvenu !"
-        else :
-            message = "A bientôt !"
-        tft.text((20, 20), message, TFT.GREEN, sysfont, 3, nowrap=True)
-        tft.text((20, 60), nom, TFT.RED, sysfont, 3, nowrap=True)
+ #       recu = cnx.recv(1024)           #est-ce qu'il faut attendre un petit peu avant ou il ne continu pas le code avant d'avoir recu qqch ?
+    #    invalid=True
+    #    if recu != b'invalid ID' :
+    #        invalid = False
+    #        nom = recu[:-2].decode()
+    #        statut = recu[-1]
+    #        equipe = recu[-2]
+    #    
+    #    #---Buzzer---#
+    #    if invalid:
+    #        for tone, length in zip(invalid_tone, rhythm):
+    #            beeper.freq(tones[tone])
+    #            time.sleep(tempo/length)
+    #    else:
+    #        for tone, length in zip(valid_tone, rhythm):
+    #            beeper.freq(tones[tone])
+    #            time.sleep(tempo/length)
+    #        
+    #    
+    #    #---Màj écran---#
+    #    if statut == 1:
+    #        message = "Bienvenu !"
+    #    else :
+    #        message = "A bientôt !"
+    #    tft.text((20, 20), message, TFT.GREEN, sysfont, 3, nowrap=True)
+    #    tft.text((20, 60), nom, TFT.RED, sysfont, 3, nowrap=True)
 
         #---fin de la bouvle---
         ID=0
