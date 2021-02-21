@@ -65,13 +65,13 @@ while True:
     #---lecture ID (125kHz)---#
     if uart1.any():
         uart1.readinto(buf)                          # UART.read([nbytes]) ou sinon UART.readinto(buf[, nbytes])
-	ID = bytes(buf)
-    
+	    ID = bytes(buf)
+        
     #---lecture ID (13MHz)---#
     (stat, tag_type) = rdr.request(rdr.REQIDL)
-	if stat == rdr.OK:
-		(stat, raw_uid) = rdr.anticoll()
-		if stat == rdr.OK:
+    if stat == rdr.OK:
+        (stat, raw_uid) = rdr.anticoll()
+        if stat == rdr.OK:
             ID = raw_uid[0] + raw_uid[1] + raw_uid[2] + raw_uid[3]
 					#print("New card detected")
 					#print("  - tag type: 0x%02x" % tag_type)
