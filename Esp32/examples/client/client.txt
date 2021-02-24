@@ -2,7 +2,7 @@
 python
 import socket
 cnx_p=socket.socket()
-cnx_p.bind(("",1234))
+cnx_p.bind(("",63714))
 cnx_p.listen(1)
 cnx,infos=cnx_p.accept()
 
@@ -18,7 +18,7 @@ wlan.connect('6650 1200', 'jogalo-2824-2824')
 
 import usocket
 cnx=usocket.socket(usocket.AF_INET,usocket.SOCK_STREAM)
-cnx.connect(("192.168.1.134",1234))
+cnx.connect(("192.168.1.112",1234))
 
 -------talk----------
 cnx.send(b'coucou')

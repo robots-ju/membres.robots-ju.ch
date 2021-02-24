@@ -22,7 +22,7 @@ wlan.active(True)
 wlan.connect('6650 1200', 'jogalo-2824-2824')           ###### se faire white liste /!\
 
 cnx=usocket.socket(usocket.AF_INET,usocket.SOCK_STREAM)
-cnx.connect(("192.168.1.134",63714))                   ######
+cnx.connect(("192.168.1.112",63714))                   ######
 
 #---buzzer---#
 tempo = 5
@@ -52,7 +52,7 @@ buf = bytearray(4)                                  # 4 changeable
 rdr = mfrc522.MFRC522(14, 13, 12, 5, 21)
 
 #---ST735---
-spi = SPI(2, baudrate=20000000, polarity=0, phase=0, sck=Pin(27), mosi=Pin(32), miso=Pin(12))
+spi = SPI(2, baudrate=20000000, polarity=0, phase=0, sck=Pin(27), mosi=Pin(32))#, miso=Pin(12))
 tft=TFT(spi,33,17,18)
 tft.initg()
 tft.rgb(False)
