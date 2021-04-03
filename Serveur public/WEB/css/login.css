@@ -1,8 +1,16 @@
-
-body{
-    background:#b388d0;
+body {
+    background: white;
+    color: #333;
+    font-family: Roboto, Arial, sans-serif;
     margin: 0;
-    border: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 40em;
+    margin: 0 auto;
+    padding: 20px;
+    border-top: 10px solid #478a23;
 }
 .box{
     border-radius:5px;
