@@ -40,7 +40,7 @@ body {
     margin:10px 0 0 6px;
 }
 .box input{
-    border:6px solid white;
+    border:6px solid #dcdcdc;
     border-radius:3px;
     box-shadow:2px 3px 3px rgba(0, 0, 0, 0.06) inset, 0 0 1px #95a2a7 inset;
     margin:3px 0 4px;
@@ -55,7 +55,7 @@ body {
 }
 #btnLogin
 {
-    background-color: #4CAF50;
+    background-color: #478a23;
     border: none;
     color: white;
     padding: 15px 32px;
