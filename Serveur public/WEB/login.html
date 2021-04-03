@@ -2,10 +2,8 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Simple Login Form</title>
+<title>Plateforme membres Robots-JU</title>
 <meta charset="UTF-8" />
-<meta name="Designer" content="PremiumPixels.com">
-<meta name="Author" content="$hekh@r d-Ziner, CSSJUNTION.com">
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/structure.css">
 </head>
@@ -22,6 +20,16 @@
 	  <input type="submit" class="btnLogin" value="Login" tabindex="4">
 	</footer>
 </form>
+<script> 
+	let response = await fetch(/login?user=["username"]&pwd=["password"]);
+
+	if (response.ok) { // if HTTP-status is 200-299
+	  // get the response body (the method explained below)
+	  let json = await response.json();
+	} else {
+	  alert("HTTP-Error: " + response.status);
+	}
+</script>
 
 </body>
 </html>
