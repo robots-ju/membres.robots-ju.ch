@@ -24,14 +24,14 @@ body {
     border: 0;
 }
 .boxBody{
-    background:#fefefe;
+    background:white;
     padding:10px 20px;
     margin: 0;
     border: 0;
 }
 
 .box footer{
-    background:#fefefe;
+    background:white;
     padding:22px 26px;
 	height:32px;
 }
@@ -40,7 +40,7 @@ body {
     margin:10px 0 0 6px;
 }
 .box input{
-    border:6px solid #F7F9FA;
+    border:6px solid white;
     border-radius:3px;
     box-shadow:2px 3px 3px rgba(0, 0, 0, 0.06) inset, 0 0 1px #95a2a7 inset;
     margin:3px 0 4px;
