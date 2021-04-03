@@ -1,47 +1,33 @@
-
 <!DOCTYPE HTML>
 <html>
-<head>
-<title>Plateforme membres Robots-JU</title>
-<meta charset="UTF-8" />
-<link rel="stylesheet" type="text/css" href="css/reset.css">
-<link rel="stylesheet" type="text/css" href="css/structure.css">
-</head>
+	<head>
+		<title>Plateforme membres Robots-JU</title>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" type="text/css" href="css/login.css">
+	</head>
 
-<body>
-<form class="box login">
-	<fieldset class="boxBody">
-	  <label>Nom d'utilisateur:</label>
-	  <input type="text" tabindex="1"  required>
-	  <label><a href="#" class="rLink" tabindex="5"></a>Mot de passe:</label>
-	  <input type="password" tabindex="2" required>
-	</fieldset>
-	<footer>
-	  <input type="submit" class="btnLogin" value="Login" tabindex="4">
-	</footer>
-</form>
-<script> 
-	let response = await fetch(/login?user=["username"]&pwd=["password"]);
+	<body>
+		<div class="box">
+			<fieldset class="boxBody">
+				<label>Nom d'utilisateur:</label>
+				<input type="text" id="username">
+				<label>Mot de passe:</label>
+				<input type="password">
+			</fieldset>
+			<footer>
+				<button id="btnLogin">Login</button>
+			</footer>
+		</div>
+		<script>
+			document.getElementById("btnLogin").onclick=function(){
+				let response = await fetch("/login?user="+document.getElementById("username").value+"&pwd="+document.getElementById("password"));
 
-	if (response.ok) { // if HTTP-status is 200-299
-	  // get the response body (the method explained below)
-	  let json = await response.json();
-	} else {
-	  alert("HTTP-Error: " + response.status);
-	}
-</script>
-
-</body>
+				if (response.status==204) {
+					document.location="/user.html";
+				} else {
+					alert("Nom d'utilisateur ou mot de passe invalide");
+				}
+			}
+		</script>
+	</body>
 </html>
-
-<!--
-<html>
-    <head>
-        <title>Plateforme membres Robots-JU</title>
-    </head>
-    <body>
-        Nom d'utilisateur: <input id="username"><br/>
-        Mot de passe: <input type="password" id="password">
-    </body>
-</html
--->
