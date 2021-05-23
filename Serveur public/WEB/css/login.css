@@ -5,11 +5,6 @@ body {
     margin: 0;
 }
 
-.img {
-    max-width: 100%;
-    height: auto;
-}
-
 .container {
     width: 100%;
     max-width: 40em;
