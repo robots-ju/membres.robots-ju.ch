@@ -4,6 +4,7 @@
 		<title>Plateforme membres Robots-JU</title>
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" type="text/css" href="css/login.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 
 	<body>		
@@ -16,7 +17,7 @@
 				<label>Nom d'utilisateur:</label>
 				<input type="text" id="username">
 				<label>Mot de passe:</label>
-				<input type="password">
+				<input type="password" id="password">
 			</fieldset>
 			<footer>
 				<button id="btnLogin">Login</button>
@@ -24,13 +25,24 @@
 		</div>
 		<script>
 			document.getElementById("btnLogin").onclick=function(){
-				let response = await fetch("/login?user="+document.getElementById("username").value+"&pwd="+document.getElementById("password"));
-
-				if (response.status==204) {
-					document.location="/user.html";
-				} else {
-					alert("Nom d'utilisateur ou mot de passe invalide");
+				const user={
+					username: document.getElementById("username").value,
+					password: document.getElementById("password").value
 				}
+				const options={
+					method: 'POST',
+					body: JSON.stringify(user),
+					headers: {
+						'Content-Type':'application/json'
+					}
+				}
+				fetch("/login",options).then(response=>{
+					if (response.status==204) {
+						document.location="/user.html";
+					} else {
+						alert("Nom d'utilisateur ou mot de passe invalide");
+					}
+				});
 			}
 		</script>
 	</body>
